@@ -1,0 +1,42 @@
+############   Lattice thermal conductivity of Silicon  ##############
+######################  Phono3py   ###################################
+######################## by kedar ####################################    
+You should have a file which should contain the structure details
+Here we have Si.in 
+
+Note- ibrav=0 must for making supercell
+
+Workflow:
+- Create supercells with displacements: (default = 0.03)  
+If you want to change the displacement use --amplitude 
+(i.e. --amplitude=0.02)
+% phono3py --qe -d --dim="2 2 2" -c Si.in
+
+- Run Quantum espresso to calculate force:
+Here, we have a script which can make the folders from 1 to 111 and 
+required input file. You have run pw.x executable
+% bash script.sh
+ It will make the folders with input file, you have run the Quantum 
+espresso executable in that folder with suitable Psuedo-potential path 
+
+- Collect forces and creates FORCES_FC3:
+% phono3py --qe --cf3 {001..111}/Si.out
+
+- Calculate 2nd and 3rd order force constants: 
+ Creates fc2.hdf5 and fc3.hdf5 
+% phono3py --qe --dim="2 2 2" -c Si.in --sym-fc
+
+- Calculate the lattice thermal conductivity (kappa):
+% phono3py --qe --dim="2 2 2" -c Si.in --pa="0 1/2 1/2 1/2 0 1/2 1/2 1/2 0" 
+     --mesh="19 19 19" tmin=50  tmax=1000 tstep=50 --fc3 --fc2 --br > result
+ It writes output data in result file.
+### Tags
+ --br   = kappa with relaxation time approximation (RTA)
+ --lbte = kappa with direct solution of LBTE 
+ --tmax = maximum temperature
+ --tmin = minimun temperature 
+ --tstep= temperature gap between two points
+
+
+ 
+
