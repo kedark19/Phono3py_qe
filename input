@@ -1,0 +1,20 @@
+ &control
+    calculation = 'scf'
+    pseudo_dir = './'
+    tprnfor = .TRUE.
+ /
+ &system
+    ibrav = 0
+    nat = 64
+    ntyp = 1
+    occupations = 'smearing'
+    smearing = 'gaussian'
+    degauss = 0.01
+    ecutwfc = 50.0
+ /
+ &electrons
+    diagonalization = 'david'
+    conv_thr = 1.0d-8
+ /
+K_POINTS automatic
+ 2 2 2  1 1 1
