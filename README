@@ -38,5 +38,7 @@ espresso executable in that folder with suitable Psuedo-potential path
  --tstep= temperature gap between two points
 
 
+ - Plot the lattice thermal conductivity of Silicon using the script script_plot.sh
+ % bash script_plot.sh
  
 
