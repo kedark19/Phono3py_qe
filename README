@@ -28,7 +28,7 @@ espresso executable in that folder with suitable Psuedo-potential path
 
 - Calculate the lattice thermal conductivity (kappa):
 % phono3py --qe --dim="2 2 2" -c Si.in --pa="0 1/2 1/2 1/2 0 1/2 1/2 1/2 0" 
-     --mesh="19 19 19" tmin=50  tmax=1000 tstep=50 --fc3 --fc2 --br > result
+     --mesh="19 19 19" --tmin=50  --tmax=1000 --tstep=50 --fc3 --fc2 --br > result
  It writes output data in result file.
 ### Tags
  --br   = kappa with relaxation time approximation (RTA)
